@@ -23,7 +23,7 @@ de Computação Evolutiva. Abaixo, um pseudocódigo da estrutura geral deste alg
 O código possui a seguinte função de benchmark binária chamada OneMax, onde $\vec{x}$ é o vetor de decisão, $x_i$ é uma variável de decisão, e $N$ é a quantidade total de variáveis de decisão:
 
 $$
-\text{\large\max f(\vec{x}) = \sum_{i=1}^{N} x_i}
+\max f(\vec{x}) = \sum_{i=1}^{N} x_i
 $$
 
 #### Figura 1 - Exemplo de convergência do algoritmo genético na função OneMax com N=100 variáveis de decisão.
