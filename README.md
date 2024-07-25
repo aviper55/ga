@@ -26,9 +26,11 @@ $$
 \max f(\vec{x}) = \sum_{i=1}^{N} x_i
 $$
 
+Figura 1 - Exemplo de convergência do algoritmo genético na função 
+OneMax com N=100 variáveis de decisão.
 
-![alt text](./figures/convergence_example.png "Title")
-Figura 1 - Exemplo de convergência do algoritmo genético na função OneMax com N=100 variáveis de decisão
+
+<img src="./figures/convergence_example.png" align="center" alt="alt text" title="Title" width="500"/>
 
 # Operadores Genéticos
 
