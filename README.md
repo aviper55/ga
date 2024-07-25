@@ -23,11 +23,10 @@ de Computação Evolutiva. Abaixo, um pseudocódigo da estrutura geral deste alg
 O código possui a seguinte função de benchmark binária chamada OneMax, onde $\vec{x}$ é o vetor de decisão, $x_i$ é uma variável de decisão, e $N$ é a quantidade total de variáveis de decisão:
 
 $$
-\max f(\vec{x}) = \sum_{i=1}^{N} x_i
+\text{\large\max f(\vec{x}) = \sum_{i=1}^{N} x_i}
 $$
 
-Figura 1 - Exemplo de convergência do algoritmo genético na função 
-OneMax com N=100 variáveis de decisão.
+#### Figura 1 - Exemplo de convergência do algoritmo genético na função OneMax com N=100 variáveis de decisão.
 
 ![alt text](./figures/convergence_example.png "Title")
 
@@ -35,8 +34,8 @@ OneMax com N=100 variáveis de decisão.
 
 Os seguintes operadores genéticos estão presentes no código atualmente: o crossover de dois pontos e a mutação bit-flip.
 
-Figura 2 - Exemplo de um crossover de dois pontos.
+#### Figura 2 - Exemplo de um crossover de dois pontos.
 ![alt text](./figures/two_point.png "Title")
 
-Figura 3 - Exemplo de uma mutação bit-flip.
+#### Figura 3 - Exemplo de uma mutação bit-flip.
 ![alt text](./figures/bit_flip.png "Title")
