@@ -22,7 +22,9 @@ de Computação Evolutiva. Abaixo, um pseudocódigo da estrutura geral deste alg
 
 O código possui a seguinte função de benchmark binária chamada OneMax, onde $\vec{x}$ é o vetor de decisão e $N$ é a quantidade de variáveis de decisão:
 
-$max \; f(\vec{x}) = \sum_{i=1}^{N} x_i$
+$$
+\max f(\vec{x}) = \sum_{i=1}^{N} x_i
+$$
 
 
 ![alt text](./figures/convergence_example.png "Title")
