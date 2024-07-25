@@ -30,7 +30,9 @@ Figura 1 - Exemplo de convergência do algoritmo genético na função
 OneMax com N=100 variáveis de decisão.
 
 
-<img src="./figures/convergence_example.png" align="center" alt="alt text" title="Title" width="500"/>
+<div style="text-align: center;">
+    <img src="./figures/convergence_example.png" alt="alt text" title="Title" width="600"/>
+</div>
 
 # Operadores Genéticos
 
