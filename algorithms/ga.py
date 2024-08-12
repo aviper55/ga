@@ -13,7 +13,7 @@ class GA:
 
     def plot_convergence(self):
         # cria a figura
-        plt.style.use('seaborn-white')
+#        plt.style.use('seaborn-white')
         fig, ax = plt.subplots(figsize=(6, 4), dpi=100)
 
         # define o eixo x
@@ -31,6 +31,8 @@ class GA:
         # plota o gráfico
         plt.plot(x_axis,y_axis, marker='o', color='blue', linestyle='None')
         plt.show()
+        plt.savefig('convergence.png')
+
 
     def do_tournament_selection(self):
         try:
@@ -38,7 +40,11 @@ class GA:
             participants = random.sample(self.population.population, self.problem.num_of_tour_particips)
 
             # Avalia qual possui a maior função objetivo e retorna-o
-            best = max(participants, key=lambda obj: obj.objective)
+            if self.problem.direction == 'MAX':
+                best = max(participants, key=lambda obj: obj.objective)
+            else:
+                best = min(participants, key=lambda obj: obj.objective)
+            
             return best
         except Exception as e:
             print("Error in tournament selection:")
@@ -50,9 +56,12 @@ class GA:
             # Seleciona dois pais por meio de torneio de seleção binária
             parent1 = self.do_tournament_selection()
             parent2 = self.do_tournament_selection()
+            i=0
             while parent1.decision_vector == parent2.decision_vector:
                 parent2 = self.do_tournament_selection()
-
+                i+=1
+                if i<20:
+                    break
             # Cria um filho a partir do crossover de dois pontos dos pais
             child = self.operators.do_two_point_crossover(parent1=parent1, parent2=parent2, population=self.population)
 
@@ -68,7 +77,11 @@ class GA:
 
     def do_environmental_selection(self):
         # Remove os piores individuos da população, mantendo apenas os num_of_individuals melhores
-        new_population = heapq.nlargest(self.problem.num_of_individuals, self.population.population, key=lambda obj: obj.objective)
+        if self.problem.direction == 'MAX':
+            new_population = heapq.nlargest(self.problem.num_of_individuals, self.population.population, key=lambda obj: obj.objective)
+        else:
+            new_population = heapq.nsmallest(self.problem.num_of_individuals, self.population.population, key=lambda obj: obj
+            .objective)
         self.population.population = new_population
 
     def run(self):
@@ -76,7 +89,7 @@ class GA:
         self.population = self.problem.create_initial_population()
 
         for i in range(self.problem.num_of_generations):
-            print("Generation: " + str(i))
+            # print("Generation: " + str(i))
 
             # Cria novas soluções
             children = self.create_offspring()
@@ -95,3 +108,4 @@ class GA:
 
         # Plota o gráfico de convergência
         self.plot_convergence()
+        return best_so_far

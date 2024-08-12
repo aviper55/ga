@@ -16,6 +16,8 @@ class Problem:
                  mutation,
                  tournament_prob,
                  num_of_tour_particips,
+                 constraints=None,
+                 penalty_value=None,
                  expand=True):
         self.num_of_variables = num_of_variables
         self.tournament_prob = tournament_prob
@@ -23,11 +25,13 @@ class Problem:
         self.num_of_individuals = num_of_individuals
         self.objective = objective
         self.expand = expand
+        self.penalty_value=penalty_value
         self.variables_range = variables_range
         self.direction = direction
         self.num_of_generations = num_of_generations
         self.variables = self.set_variables()
         self.mutation = mutation
+        self.constraints = constraints
         self.tabu = set()
 
     def set_variables(self):
@@ -36,6 +40,7 @@ class Problem:
         :return: O conjunto de variáveis factíveis para o problema
         """
         variables = [i for i in range(min(self.variables_range), max(self.variables_range) + 1)]
+        
         return variables
 
     def create_initial_population(self):
@@ -45,7 +50,10 @@ class Problem:
         """
         population = Population()
         for _ in range(self.num_of_individuals):
-            individual = self.generate_individual()
+            if self.variables_range[-1] > 1:
+                individual = self.generate_unique_individual()
+            else:
+                individual = self.generate_individual()
             individual.id = _
             individual.trace = [_ for i in range(self.num_of_variables)]
             self.calculate_objective(individual)
@@ -63,6 +71,16 @@ class Problem:
         return individual
 
 
+    def generate_unique_individual(self):
+        """
+        Cria um novo indivíduo
+        :return: o objeto do indivíduo
+        """
+        individual = Individual(self.direction)
+        individual.decision_vector = random.sample(range(self.num_of_variables), self.num_of_variables)
+        # individual.decision_vector = [random.randint(min(self.variables_range), max(self.variables_range)) for x in range(self.num_of_variables)]
+        return individual
+    
     def calculate_objective(self, individual):
         """
         Calcula a função objetivo do indivíduo

@@ -17,11 +17,12 @@ class Individual(object):
         self.objective = None
         self.came_from = None
         self.direction = direction
+        self.fitness = None
 
 
-
-
-
+    
+    # def __iter__(self):
+    #     return self.decision_vector.__iter__()
 
 
 
